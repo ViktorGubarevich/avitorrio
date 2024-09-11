@@ -1,0 +1,70 @@
+.overlay {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: #00000090;
+  z-index: 1;
+}
+
+.overlay-active {
+  display: block;
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 50px;
+}
+
+.popup-form-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 20px;
+  margin-bottom: 50px;
+  cursor: pointer;
+}
+
+.popup-title {
+  font-size: 25px;
+}
+
+.popup-title-active {
+  color: orange;
+  text-decoration: underline 2px;
+  text-underline-offset: 10px;
+}
+
+.popup-input {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 30px;
+  outline: none;
+  padding-left: 20px;
+  border-radius: 5px;
+}
+
+.popup-btn {
+  display: flex;
+  margin: 0 auto;
+  padding: 12px 20px;
+  background-color: orange;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  color: black;
+}
+
+.popup-validation {
+  color: red;
+  margin-bottom: 20px;
+}

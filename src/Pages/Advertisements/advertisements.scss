@@ -1,0 +1,153 @@
+.category {
+  padding: 50px 20px;
+  margin-bottom: 40px;
+  background-color: rgb(182, 179, 179);
+}
+
+.category-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.category-search {
+  position: relative;
+  width: 40%;
+}
+
+.category-input {
+  width: 100%;
+  height: 50px;
+  padding-left: 20px;
+  border: 2px solid black;
+}
+
+.category-icon {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 46px;
+  background-color: orange;
+}
+
+.category-select {
+  width: 40%;
+  height: 50px;
+  padding-left: 20px;
+  border: 2px solid black;
+}
+
+.category-content {
+  margin: 40px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-price {
+  width: 40%;
+}
+
+.category-inputs {
+  display: flex;
+  gap: 40px;
+}
+
+.category-second-input {
+  width: 50%;
+  height: 50px;
+  padding-left: 20px;
+  border: 2px solid black;
+}
+
+.category-sort {
+  width: 40%;
+}
+
+.category-select.sort {
+  width: 100%;
+}
+
+.btn {
+  display: flex;
+  justify-content: end;
+}
+
+.category-btn {
+  padding: 15px 20px;
+  width: 20%;
+  background-color: orange;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  color: black;
+}
+
+.advertisement-size {
+  cursor: pointer;
+
+  option {
+    cursor: pointer;
+  }
+}
+
+.home {
+  padding: 50px 0;
+}
+
+.home-content {
+  flex-direction: column;
+}
+
+.home-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.home-card {
+  width: calc(25% - (60px / 4));
+  border: 2px solid orange;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.3s;
+  height: 500px;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-10px);
+    transition: 0.3s;
+  }
+}
+
+.home-card-link {
+  color: black;
+}
+
+.home-card-img {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 20px;
+}
+
+.home-card-title,
+.home-card-price {
+  margin-bottom: 10px;
+}
+
+.home-card-descr {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

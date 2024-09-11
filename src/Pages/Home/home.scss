@@ -1,0 +1,15 @@
+.homepage {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.homepage-title {
+  display: flex;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 40px;
+}
