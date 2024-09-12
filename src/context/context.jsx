@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 import axios from "../api/axios";
 
@@ -18,6 +18,9 @@ export const Context = ({ children }) => {
     },
   });
 
+  const controller = new AbortController();
+  const signal = controller.signal;
+
   const restoreUserFromLocalStorage = () => {
     if (JSON.parse(localStorage.getItem("user")) !== null) {
       setUser(JSON.parse(localStorage.getItem("user")));
@@ -31,11 +34,19 @@ export const Context = ({ children }) => {
       .get(
         `/advertisements?${
           filter?.likes?.length ? `likes=${filter.likes}` : ""
-        }${filter?.name?.length ? `&name=${filter.name}` : ""}`
+        }${filter?.name?.length ? `&name=${filter.name}` : ""}`,
+        { signal }
       )
       .then((res) => {
         setAdvertisements(res.data);
         setLoading(false);
+      })
+      .catch((error) => {
+        if (error.name === "AbortError") {
+          console.log("Запрос был отменен");
+        } else {
+          console.error("Ошибка:", error);
+        }
       });
   };
 
@@ -43,10 +54,20 @@ export const Context = ({ children }) => {
     setLoading(true);
 
     axios
-      .get(`/orders?${filter?.status?.length ? `status=${filter.status}` : ""}`)
+      .get(
+        `/orders?${filter?.status?.length ? `status=${filter.status}` : ""}`,
+        { signal }
+      )
       .then((res) => {
         setOrders(res.data);
         setLoading(false);
+      })
+      .catch((error) => {
+        if (error.name === "AbortError") {
+          console.log("Запрос был отменен");
+        } else {
+          console.error("Ошибка:", error);
+        }
       });
   };
 
@@ -70,6 +91,7 @@ export const Context = ({ children }) => {
     getAllOrders,
     filter,
     setFilter,
+    signal,
   };
 
   return (

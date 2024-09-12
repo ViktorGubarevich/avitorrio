@@ -16,6 +16,14 @@
       "avatar": "",
       "products": [],
       "id": 2
+    },
+    {
+      "email": "gubarew@gmail.com",
+      "password": "$2a$10$.iCoNHes9grOSLqPsvAhe.nqhQZFrHh1x//q.S9oH1rsJAwPqi8S2",
+      "name": "Виктор Winner",
+      "avatar": "",
+      "products": [],
+      "id": 3
     }
   ],
   "advertisements": [
@@ -32,8 +40,8 @@
     {
       "id": "2",
       "name": "Ведро",
-      "description": "Последняя возможность купить по выгодной цене!",
-      "price": 3455,
+      "description": "Последняя возможность купить по выгодной цене здесь и сейчас",
+      "price": "3455",
       "createdAt": "2023-08-12T20:16:55.351Z",
       "views": 77832,
       "likes": 45666,
@@ -284,6 +292,21 @@
         "id": 2
       },
       "id": "28"
+    },
+    {
+      "imageUrl": "https://cs1.livemaster.ru/storage/7b/b2/d41845077268373e01b5f5025086--vintazh-starinnyj-stul-antikvarnyj-stul-starinnaya-mebel-fran.jpg",
+      "name": "Груша",
+      "description": "Если вы не видите грушу, то это исключительно только ваши проблемы___)))",
+      "price": "50000",
+      "creator": {
+        "email": "gubarew.v@gmail.com",
+        "name": "Виктор",
+        "avatar": "https://e7.pngegg.com/pngimages/340/946/png-clipart-avatar-user-computer-icons-software-developer-avatar-child-face-thumbnail.png",
+        "products": [],
+        "balance": "100000",
+        "id": 1
+      },
+      "id": "qHrshLf"
     }
   ],
   "orders": [
@@ -444,7 +467,7 @@
     },
     {
       "id": "6",
-      "status": "Ожидают оплаты",
+      "status": "Отменен",
       "createdAt": "2024-08-12T20:20:55.351Z",
       "finishedAt": "2024-08-12T20:25:55.351Z",
       "total": 300,

@@ -6,7 +6,14 @@ import { CustomContext } from "../../context/context";
 
 import "./popup.scss";
 
-export const Popup = ({ popup, setPopup, popupAdd, setPopupAdd, onClose }) => {
+export const Popup = ({
+  popup,
+  setPopup,
+  popupAdd,
+  setPopupAdd,
+  onClose,
+  signal,
+}) => {
   const { user, setUser } = useContext(CustomContext);
   const [status, setStatus] = useState("signIn");
 
@@ -29,7 +36,7 @@ export const Popup = ({ popup, setPopup, popupAdd, setPopupAdd, onClose }) => {
 
   const signInHandler = (data) => {
     axios
-      .post("/login", data)
+      .post("/login", data, { signal })
       .then((res) => {
         setPopup(false);
         localStorage.setItem("user", JSON.stringify(res.data.user));
@@ -41,11 +48,15 @@ export const Popup = ({ popup, setPopup, popupAdd, setPopupAdd, onClose }) => {
 
   const signUpHandler = (data) => {
     axios
-      .post("/users", {
-        ...data,
-        avatar: "",
-        products: [],
-      })
+      .post(
+        "/users",
+        {
+          ...data,
+          avatar: "",
+          products: [],
+        },
+        { signal }
+      )
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data.user));
         setUser(res.data.user);
@@ -57,10 +68,14 @@ export const Popup = ({ popup, setPopup, popupAdd, setPopupAdd, onClose }) => {
 
   const addPostHandler = (data) => {
     axios
-      .post("/advertisements", {
-        ...data,
-        creator: user,
-      })
+      .post(
+        "/advertisements",
+        {
+          ...data,
+          creator: user,
+        },
+        { signal }
+      )
       .then(() => {
         setPopupAdd(false);
         reset();

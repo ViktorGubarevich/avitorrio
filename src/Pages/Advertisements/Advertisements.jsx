@@ -56,7 +56,7 @@ export const Advertisements = () => {
   };
 
   const debounceFunc = debounce(searchAdvertisements, 800);
-  const debouncePriceFrom = debounce(searchPriceAFromdvertisements, 2000);
+  const debouncePriceFrom = debounce(searchPriceAFromdvertisements, 800);
 
   if (loading) {
     return (

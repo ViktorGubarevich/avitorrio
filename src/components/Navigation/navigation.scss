@@ -23,4 +23,9 @@
     background-color: black;
     color: orange;
   }
+
+  &.active {
+    cursor: default;
+    text-decoration: none;
+  }
 }

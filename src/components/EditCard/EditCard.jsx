@@ -1,6 +1,5 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
 
 import axios from "../../api/axios";
 import { CustomContext } from "../../context/context";
@@ -8,27 +7,38 @@ import { CustomContext } from "../../context/context";
 import "./edit-card.scss";
 
 export const EditCard = ({ onClose }) => {
-  const { advertisement, setAdvertisement } = useContext(CustomContext);
+  const { advertisement, setAdvertisement, signal } = useContext(CustomContext);
 
-  const params = useParams();
   const { register, handleSubmit } = useForm();
 
   const changePostHandler = (data) => {
     axios
-      .patch(`/advertisements/${advertisement.id}`, {
-        imageUrl: data.imageUrl.length ? data.imageUrl : advertisement.imageUrl,
-        name: data.name.length ? data.name : advertisement.name,
-        description: data.description.length
-          ? data.description
-          : advertisement.description,
-        price: data.price.length ? data.price : advertisement.price,
-      })
+      .patch(
+        `/advertisements/${advertisement.id}`,
+        {
+          imageUrl: data.imageUrl.length
+            ? data.imageUrl
+            : advertisement.imageUrl,
+          name: data.name.length ? data.name : advertisement.name,
+          description: data.description.length
+            ? data.description
+            : advertisement.description,
+          price: data.price.length ? data.price : advertisement.price,
+        },
+        { signal }
+      )
       .then((res) => {
         setAdvertisement(res.data);
         onClose();
         alert("Данные сохранены успешно!");
       })
-      .catch((err) => alert(err));
+      .catch((error) => {
+        if (error.name === "AbortError") {
+          console.log("Запрос был отменен");
+        } else {
+          console.error("Ошибка:", error);
+        }
+      });
   };
 
   return (

@@ -1,4 +1,4 @@
-# Название проекта AVITORRIO
+# AVITORRIO
 
 Личный кабинет продавца на маркетплейсе, в котором есть возможность управлять своими объявлениями и заказами.
 
@@ -61,4 +61,4 @@ npm run build или yarn build
 
 ## Контакты
 
-Ваше имя - Виктор [gubarew.v@gmail.com](mailto: gubarew.v@gmail.com)
+Ваше имя - Виктор [gubarew.v@gmail.com](mailto:gubarew.v@gmail.com)

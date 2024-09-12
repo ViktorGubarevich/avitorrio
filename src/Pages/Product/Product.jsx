@@ -28,9 +28,18 @@ export const Product = () => {
   };
 
   useEffect(() => {
-    axios.get(`/advertisements/${params.id}`).then(({ data }) => {
-      setAdvertisement(data);
-    });
+    axios
+      .get(`/advertisements/${params.id}`, { signal })
+      .then(({ data }) => {
+        setAdvertisement(data);
+      })
+      .catch((error) => {
+        if (error.name === "AbortError") {
+          console.log("Запрос был отменен");
+        } else {
+          console.error("Ошибка:", error);
+        }
+      });
   }, []);
 
   return (

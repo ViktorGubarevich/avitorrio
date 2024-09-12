@@ -17,15 +17,26 @@ export const Profile = () => {
 
   const updateUser = (data) => {
     axios
-      .patch(`/users/${user.id}`, {
-        name: data.name.length ? data.name : user.name,
-        email: data.email.length ? data.email : user.email,
-        avatar: data.avatar.length ? data.avatar : user.avatar,
-      })
+      .patch(
+        `/users/${user.id}`,
+        {
+          name: data.name.length ? data.name : user.name,
+          email: data.email.length ? data.email : user.email,
+          avatar: data.avatar.length ? data.avatar : user.avatar,
+        },
+        { signal }
+      )
       .then((res) => {
         setUser(res.data);
         localStorage.setItem("user", JSON.stringify(res.data));
         alert("Данные сохранены успешно!");
+      })
+      .catch((error) => {
+        if (error.name === "AbortError") {
+          console.log("Запрос был отменен");
+        } else {
+          console.error("Ошибка:", error);
+        }
       });
   };
 

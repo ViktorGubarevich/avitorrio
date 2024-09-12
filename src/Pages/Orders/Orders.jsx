@@ -20,6 +20,7 @@ export const Orders = () => {
     loading,
     filter,
     setFilter,
+    signal,
   } = useContext(CustomContext);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -54,16 +55,26 @@ export const Orders = () => {
 
   const handleCancelOrder = (data) => {
     axios
-      .patch(`/orders/${data.id}`, {
-        status: "Отменен",
-      })
+      .patch(
+        `/orders/${data.id}`,
+        {
+          status: "Отменен",
+        },
+        { signal }
+      )
       .then((res) => {
         const newOrders = orders.filter((order) => order.id !== data.id);
 
         setOrders([...newOrders, res.data]);
         alert("Заказ отменен успешно");
       })
-      .catch((err) => alert(err));
+      .catch((error) => {
+        if (error.name === "AbortError") {
+          console.log("Запрос был отменен");
+        } else {
+          console.error("Ошибка:", error);
+        }
+      });
   };
 
   const sortOrders = (order) => {
