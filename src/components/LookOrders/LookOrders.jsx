@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 import "./look-orders.scss";
 
@@ -23,7 +22,7 @@ export const LookOrders = ({ items }) => {
         <div className="preview">
           <ul className="items-content">
             {items.map((item) => (
-              <li key={uuidv4()} className="item-content">
+              <li key={item.id} className="item-content">
                 <div className="item-content-left">
                   {item.imageUrl && (
                     <img

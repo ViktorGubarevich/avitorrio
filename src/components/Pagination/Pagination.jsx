@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
-
 import "./pagination.scss";
 
 export const Pagination = ({
@@ -17,7 +15,7 @@ export const Pagination = ({
   return (
     <ul className="pagination">
       {paginationNumbers.map((pageNumber) => (
-        <li key={uuidv4()} className="pagination-item">
+        <li key={pageNumber} className="pagination-item">
           <button
             className={
               currentPage === pageNumber

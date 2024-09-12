@@ -31,12 +31,6 @@ export const EditCard = ({ onClose }) => {
       .catch((err) => alert(err));
   };
 
-  useEffect(() => {
-    axios.get(`/advertisements/${params.id}`).then((res) => {
-      setAdvertisement(res.data);
-    });
-  }, []);
-
   return (
     <div className="overlay overlay-active">
       <div className="popup">

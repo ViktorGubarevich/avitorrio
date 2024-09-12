@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import { v4 as uuidv4 } from "uuid";
+import debounce from "lodash.debounce";
 
-import axios from "../../api/axios";
+import { CustomContext } from "../../context/context";
 
 import { ContainerLayout } from "../../components/Layout/ContainerLayout/ContainerLayout";
 import { Pagination } from "../../components/Pagination/Pagination";
@@ -16,8 +16,14 @@ import { GrSearch } from "react-icons/gr";
 import "./advertisements.scss";
 
 export const Advertisements = () => {
-  const [advertisements, setAdvertisements] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const {
+    advertisements,
+    getAllAdvertisements,
+    loading,
+    filter,
+    setFilter,
+  } = useContext(CustomContext);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
 
@@ -35,27 +41,22 @@ export const Advertisements = () => {
   };
 
   useEffect(() => {
-    const getAllAdvertisements = async () => {
-      setLoading(true);
-
-      const res = await axios.get("/advertisements");
-      setAdvertisements(res.data);
-      setLoading(false);
-    };
-
     getAllAdvertisements();
   }, []);
 
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const [filteredAds, setFilteredAds] = useState([]);
+  const searchAdvertisements = (e) => {
+    setFilter({ ...filter, name: e.target.value });
+  };
 
-  // useEffect(() => {
-  //   const results = currentAdvertisements.filter((advertisement) =>
-  //     advertisement.name.toLowerCase().includes(searchTerm.toLowerCase())
-  //   );
+  const searchPriceAFromdvertisements = (e) => {
+    setFilter({
+      ...filter,
+      price: { ...filter.price, from: +e.target.value },
+    });
+  };
 
-  //   setFilteredAds(results);
-  // }, [searchTerm, currentAdvertisements]);
+  const debounceFunc = debounce(searchAdvertisements, 800);
+  const debouncePriceFrom = debounce(searchPriceAFromdvertisements, 2000);
 
   if (loading) {
     return (
@@ -80,21 +81,28 @@ export const Advertisements = () => {
           <div className="category">
             <div className="category-head">
               <div className="category-search">
+                <p className="category-title">Поиск</p>
                 <input
                   className="category-input"
                   type="text"
                   placeholder="Я ищу..."
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={debounceFunc}
                 />
                 <p className="category-icon">
                   <GrSearch />
                 </p>
               </div>
-              <select className="category-select" name="" id="">
-                <option value="">Сортировать по</option>
-                <option value="">Лайкам</option>
-                <option value="">Просмотрам</option>
-              </select>
+              <div className="category-price">
+                <p className="category-title">Цена</p>
+                <div className="category-inputs">
+                  <input
+                    className="category-second-input"
+                    type="number"
+                    placeholder="Цена от"
+                    onChange={debouncePriceFrom}
+                  />
+                </div>
+              </div>
             </div>
           </div>
           <>
@@ -110,37 +118,39 @@ export const Advertisements = () => {
             </select>
           </>
           <ul className="advertisements-cards">
-            {currentAdvertisements.map((item) => (
-              <li key={uuidv4()} className="advertisement-card">
-                <NavLink
-                  className="advertisement-card-link"
-                  to={`/advertisements/${item.id}`}
-                >
-                  <img
-                    className="advertisement-card-img"
-                    src={item.imageUrl}
-                    alt={item.name}
-                  />
-                  <h2 className="advertisement-card-title">{item.name}</h2>
-                  <p className="advertisement-card-price">
-                    {item.price ? `${item.price} RUB` : ""}
-                  </p>
-                  <div className="advertisement-card-descr">
-                    {item.description}
-                  </div>
-                  <div className="product-content-uses advertisement">
-                    <div className="product-content-views">
-                      <FaEye />
-                      {item.views ? item.views : 0}
+            {currentAdvertisements
+              .filter((el) => el.price > +filter?.price?.from)
+              .map((item) => (
+                <li key={item.id} className="advertisement-card">
+                  <NavLink
+                    className="advertisement-card-link"
+                    to={`/advertisements/${item.id}`}
+                  >
+                    <img
+                      className="advertisement-card-img"
+                      src={item.imageUrl}
+                      alt={item.name}
+                    />
+                    <h2 className="advertisement-card-title">{item.name}</h2>
+                    <p className="advertisement-card-price">
+                      {item.price ? `${item.price} RUB` : ""}
+                    </p>
+                    <div className="advertisement-card-descr">
+                      {item.description}
                     </div>
-                    <div className="product-content-likes">
-                      <AiTwotoneLike />
-                      {item.likes ? item.likes : 0}
+                    <div className="product-content-uses advertisement">
+                      <div className="product-content-views">
+                        <FaEye />
+                        {item.views ? item.views : 0}
+                      </div>
+                      <div className="product-content-likes">
+                        <AiTwotoneLike />
+                        {item.likes ? item.likes : 0}
+                      </div>
                     </div>
-                  </div>
-                </NavLink>
-              </li>
-            ))}
+                  </NavLink>
+                </li>
+              ))}
           </ul>
         </div>
       </ul>

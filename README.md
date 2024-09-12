@@ -1,50 +1,64 @@
-# React + TypeScript + Vite
+# Название проекта AVITORRIO
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Личный кабинет продавца на маркетплейсе, в котором есть возможность управлять своими объявлениями и заказами.
 
-Currently, two official plugins are available:
+## Начало работы
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Эти инструкции помогут вам получить копию проекта на вашем локальном компьютере для разработки и тестирования.
 
-## Expanding the ESLint configuration
+1. На данном проекте реализована Регистрация нового пользователя, и Вход по имени пользователя с паролем.
+2. Как только зарегистрируетесь, вы сможете зайти в свой личный кабинет, нажав на свое имя.
+3. Для входа, можете использовать следующие креды:
+  
+   Почта: admin@admin.com
+   Пароль: Avito2024
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+P.S. Пароль должен содержать в себе минимум 8 символов, заглавную букву, число!
 
-- Configure the top-level `parserOptions` property like this:
+4. По умолчанию откроется страница Объявлений, кроме того есть вкладка на панели навигации "Мои заказы", а также Настройка профиля.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Предварительные требования
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- [Node.js](https://nodejs.org/) (версия 20 или выше)
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Установка
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Клонируйте репозиторий:
+
+   git clone https://github.com/ViktorGubarevich/avitorrio.git
+
+2. Перейдите в директорию проекта:
+
+   cd ваш_репозиторий
+
+3. Установите зависимости:
+
+   npm install или, если вы используете yarn: yarn install
+
+### Запуск проекта
+
+Для запуска проекта в режиме разработки выполните команду:
+
+npm run dev или yarn dev
+
+Откройте [http://localhost:3000](http://localhost:3000) в вашем браузере, чтобы увидеть приложение.
+
+### Сборка проекта
+
+Для создания оптимизированной сборки используйте команду:
+
+npm run build или yarn build
+
+## Используемые технологии
+
+- React
+- Vite
+- React Router v6
+
+## Вопросы
+
+Единственный момент, который был мне непонятен, это последний пункт для странички "Заказы", в котором говорится о том, что при нажатии на товар в карточке Заказа, должен осуществится переход к пользователю, который создал этот заказ. Видимо это подразумевает в себе новую страничку конкретного пользователя, у которого должны быть данные как заказа, так и самого пользователя, но по файлу db.json такие данные отсутствовали. К сожалению, данный пункт мною был не выполнен.
+
+## Контакты
+
+Ваше имя - Виктор [gubarew.v@gmail.com](mailto: gubarew.v@gmail.com)

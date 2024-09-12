@@ -48,13 +48,15 @@ export const Header = () => {
               <NavLink to="/advertisements" className="header-user-name">
                 {user.name}
               </NavLink>
-              <button
-                className="header-user-btn"
-                type="button"
-                onClick={() => logOutUser()}
-              >
-                Выйти
-              </button>
+              <NavLink to="/">
+                <button
+                  className="header-user-btn"
+                  type="button"
+                  onClick={() => logOutUser()}
+                >
+                  Выйти
+                </button>
+              </NavLink>
               <button
                 className="header-btn"
                 type="button"

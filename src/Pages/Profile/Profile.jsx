@@ -5,8 +5,6 @@ import { useForm } from "react-hook-form";
 import axios from "../../api/axios";
 import { CustomContext } from "../../context/context";
 
-import { IoTrashOutline } from "react-icons/io5";
-
 import { Navigation } from "../../components/Navigation/Navigation";
 import { ContainerLayout } from "../../components/Layout/ContainerLayout/ContainerLayout";
 
@@ -61,9 +59,6 @@ export const Profile = () => {
               defaultValue={user.avatar}
               placeholder="Ссылка на картинку"
             />
-            <p className="profile-icon">
-              <IoTrashOutline />
-            </p>
           </div>
           <p className="profile-info">Максимальный размер фото 5 МБ</p>
           <h3 className="profile-title">Личная информация</h3>

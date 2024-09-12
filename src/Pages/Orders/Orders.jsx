@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 
 import axios from "../../api/axios";
 import { CustomContext } from "../../context/context";
@@ -14,13 +13,18 @@ import { LookOrders } from "../../components/LookOrders/LookOrders";
 import "./orders.scss";
 
 export const Orders = () => {
-  const { orders, setOrders, loading } = useContext(CustomContext);
+  const {
+    orders,
+    setOrders,
+    getAllOrders,
+    loading,
+    filter,
+    setFilter,
+  } = useContext(CustomContext);
 
-  const [originalOrders, setOriginalOrders] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(5);
+  const [postsPerPage, setPostsPerPage] = useState(10);
   const [sortOrder, setSortOrder] = useState("asc");
-  const [filterStatus, setFilterStatus] = useState("Все");
 
   const numbersOrders = [
     3456,
@@ -66,13 +70,11 @@ export const Orders = () => {
     let sortedOrders;
 
     if (order === "asc" || order === "desc") {
-      sortedOrders = [...originalOrders].sort((a, b) => {
+      sortedOrders = [...orders].sort((a, b) => {
         return order === "asc" ? a.total - b.total : b.total - a.total;
       });
     } else {
-      sortedOrders = [...originalOrders].filter(
-        (order) => order.status === order
-      );
+      sortedOrders = [...orders].filter((order) => order.status === order);
     }
 
     setOrders(sortedOrders);
@@ -84,34 +86,8 @@ export const Orders = () => {
     sortOrders(newOrder);
   };
 
-  const handleStatusChange = (event) => {
-    const status = event.target.value;
-
-    setFilterStatus(status);
-
-    if (status === "Все") {
-      setOrders(originalOrders);
-    } else {
-      const filteredOrders = originalOrders.filter(
-        (order) => order.status === status
-      );
-      setOrders(filteredOrders);
-    }
-
-    return null;
-  };
-
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get("/orders");
-        setOriginalOrders(res.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
+    getAllOrders();
   }, []);
 
   if (loading) {
@@ -155,10 +131,12 @@ export const Orders = () => {
             <label htmlFor="statusSelect">Фильтр по статусу:</label>
             <select
               id="statusSelect"
-              value={filterStatus}
-              onChange={handleStatusChange}
+              value={filter.status}
+              onChange={(e) => {
+                setFilter({ ...filter, status: e.target.value });
+              }}
             >
-              <option value="Все">Все</option>
+              <option value="">Все</option>
               <option value="Получен">Получен</option>
               <option value="Ожидают оплаты">Ожидают оплаты</option>
               <option value="Отменен">Отменен</option>
@@ -166,7 +144,7 @@ export const Orders = () => {
           </div>
           <ul className="orders-content">
             {currentOrders.map((item, index) => (
-              <li key={uuidv4()} className="order">
+              <li key={item.id} className="order">
                 <div className="order-data">
                   <div className="order-data-block">
                     <FormatDate
