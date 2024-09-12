@@ -1,4 +1,4 @@
-export const FormatDate = ({ createdAt }) => {
+export const FormatDate = ({ title, createdAt }) => {
   const date = new Date(createdAt);
   const formattedDate = date.toLocaleDateString("ru", {
     day: "numeric",
@@ -6,5 +6,9 @@ export const FormatDate = ({ createdAt }) => {
     year: "numeric",
   });
 
-  return <h2>Дата заказа: {formattedDate}</h2>;
+  return (
+    <h2>
+      {title} {formattedDate}
+    </h2>
+  );
 };

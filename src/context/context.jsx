@@ -1,6 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
-import axios from "./axios";
+import axios from "../api/axios";
 
 export const CustomContext = createContext();
 
@@ -10,7 +10,7 @@ export const Context = ({ children }) => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const getUserFromLocalStorage = () => {
+  const restoreUserFromLocalStorage = () => {
     if (JSON.parse(localStorage.getItem("user")) !== null) {
       setUser(JSON.parse(localStorage.getItem("user")));
     }
@@ -31,7 +31,7 @@ export const Context = ({ children }) => {
   const value = {
     user,
     setUser,
-    getUserFromLocalStorage,
+    restoreUserFromLocalStorage,
     advertisement,
     setAdvertisement,
     orders,

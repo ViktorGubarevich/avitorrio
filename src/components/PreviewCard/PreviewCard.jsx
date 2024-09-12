@@ -25,9 +25,9 @@ export const PreviewCard = ({ src, name, description, price }) => {
               <img className="product-content-img" src={src} alt={name} />
             </div>
             <div className="product-content-right">
-              <h2 className="product-content-title">{name}</h2>
+              <h2 className="content-title">{name}</h2>
               <p className="product-content-descr">{description}</p>
-              <p className="product-content-price">{price} RUB</p>
+              <p className="content-price">{price} RUB</p>
             </div>
           </div>
 

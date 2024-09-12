@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import axios from "../../axios";
-import { ContainerLayout } from "../../components/Layout/ContainerLayout/ContainerLayout";
+import { v4 as uuidv4 } from "uuid";
 
+import axios from "../../api/axios";
+
+import { ContainerLayout } from "../../components/Layout/ContainerLayout/ContainerLayout";
 import { Pagination } from "../../components/Pagination/Pagination";
 import { Navigation } from "../../components/Navigation/Navigation";
+
+import { FaEye } from "react-icons/fa";
+import { AiTwotoneLike } from "react-icons/ai";
 import { GrSearch } from "react-icons/gr";
 
 import "./advertisements.scss";
@@ -41,7 +46,16 @@ export const Advertisements = () => {
     getAllAdvertisements();
   }, []);
 
-  console.log(currentAdvertisements);
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const [filteredAds, setFilteredAds] = useState([]);
+
+  // useEffect(() => {
+  //   const results = currentAdvertisements.filter((advertisement) =>
+  //     advertisement.name.toLowerCase().includes(searchTerm.toLowerCase())
+  //   );
+
+  //   setFilteredAds(results);
+  // }, [searchTerm, currentAdvertisements]);
 
   if (loading) {
     return (
@@ -55,13 +69,13 @@ export const Advertisements = () => {
     <ContainerLayout>
       <Navigation />
 
-      <ul className="home">
-        <div className="home-content">
-          <div className="product-crumbs">
-            <NavLink className="product-crumbs-link" to="/">
-              Home
+      <ul className="advertisements">
+        <div className="advertisements-content">
+          <div className="crumbs">
+            <NavLink className="crumbs-link" to="/">
+              Главная
             </NavLink>
-            - <p className="product-crumbs-noLink">Advertisements</p>
+            - <p className="crumbs-noLink">Мои объявления</p>
           </div>
           <div className="category">
             <div className="category-head">
@@ -70,6 +84,7 @@ export const Advertisements = () => {
                   className="category-input"
                   type="text"
                   placeholder="Я ищу..."
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <p className="category-icon">
                   <GrSearch />
@@ -81,38 +96,11 @@ export const Advertisements = () => {
                 <option value="">Просмотрам</option>
               </select>
             </div>
-            <div className="category-content">
-              <div className="category-price">
-                <p className="category-title">Цена</p>
-                <div className="category-inputs">
-                  <input
-                    className="category-second-input"
-                    type="number"
-                    placeholder="Цена от"
-                  />
-                  <input
-                    className="category-second-input"
-                    type="number"
-                    placeholder="0"
-                  />
-                </div>
-              </div>
-              <div className="category-sort">
-                <p className="category-title">Cортировать</p>
-                <select className="category-select sort" name="" id="">
-                  <option value="">По умолчанию</option>
-                  <option value="">По сумме заказа</option>
-                </select>
-              </div>
-            </div>
-            <div className="btn">
-              <button className="category-btn">Показать</button>
-            </div>
           </div>
           <>
             <label>Показывать объявлений на странице: </label>
             <select
-              className="advertisement-size"
+              className="advertisements-size"
               value={postsPerPage}
               onChange={handleChange}
             >
@@ -121,23 +109,35 @@ export const Advertisements = () => {
               <option value="50">50</option>
             </select>
           </>
-          <ul className="home-cards">
+          <ul className="advertisements-cards">
             {currentAdvertisements.map((item) => (
-              <li className="home-card">
+              <li key={uuidv4()} className="advertisement-card">
                 <NavLink
-                  className="home-card-link"
+                  className="advertisement-card-link"
                   to={`/advertisements/${item.id}`}
                 >
                   <img
-                    className="home-card-img"
+                    className="advertisement-card-img"
                     src={item.imageUrl}
                     alt={item.name}
                   />
-                  <h2 className="home-card-title">{item.name}</h2>
-                  <p className="home-card-price">
+                  <h2 className="advertisement-card-title">{item.name}</h2>
+                  <p className="advertisement-card-price">
                     {item.price ? `${item.price} RUB` : ""}
                   </p>
-                  <div className="home-card-descr">{item.description}</div>
+                  <div className="advertisement-card-descr">
+                    {item.description}
+                  </div>
+                  <div className="product-content-uses advertisement">
+                    <div className="product-content-views">
+                      <FaEye />
+                      {item.views ? item.views : 0}
+                    </div>
+                    <div className="product-content-likes">
+                      <AiTwotoneLike />
+                      {item.likes ? item.likes : 0}
+                    </div>
+                  </div>
                 </NavLink>
               </li>
             ))}

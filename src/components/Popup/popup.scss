@@ -53,9 +53,13 @@
   border-radius: 5px;
 }
 
+.popup-btns {
+  display: flex;
+  justify-content: space-between;
+}
+
 .popup-btn {
   display: flex;
-  margin: 0 auto;
   padding: 12px 20px;
   background-color: orange;
   border-radius: 10px;

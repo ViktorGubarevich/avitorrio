@@ -25,6 +25,11 @@ svg {
   height: auto;
 }
 
+.btn {
+  display: flex;
+  justify-content: end;
+}
+
 .loading {
   height: 100vh;
   display: flex;
@@ -67,4 +72,20 @@ fieldset {
 
 .inputHide {
   appearance: none;
+}
+
+.crumbs {
+  display: flex;
+  column-gap: 5px;
+  font-size: 20px;
+  margin-bottom: 60px;
+}
+
+.crumbs-link {
+  color: black;
+  cursor: pointer;
+}
+
+.crumbs-noLink {
+  color: darkgray;
 }

@@ -2,14 +2,15 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
-import { ContainerLayout } from "../../components/Layout/ContainerLayout/ContainerLayout";
-import { CustomContext } from "../../Context";
-import axios from "../../axios";
+import axios from "../../api/axios";
+import { CustomContext } from "../../context/context";
 
 import { IoTrashOutline } from "react-icons/io5";
 
-import "./profile.scss";
 import { Navigation } from "../../components/Navigation/Navigation";
+import { ContainerLayout } from "../../components/Layout/ContainerLayout/ContainerLayout";
+
+import "./profile.scss";
 
 export const Profile = () => {
   const { user, setUser } = useContext(CustomContext);
@@ -35,9 +36,11 @@ export const Profile = () => {
       <Navigation />
 
       <div className="profile-content">
-        <div className="product-crumbs">
-          <NavLink to="/">Home</NavLink> -
-          <p className="product-crumbs-noLink">Profile</p>
+        <div className="crumbs">
+          <NavLink className="crumbs-link" to="/">
+            Главная
+          </NavLink>{" "}
+          -<p className="crumbs-noLink">Мой профиль</p>
         </div>
         <form onSubmit={handleSubmit(updateUser)}>
           <h2 className="profile-title">Фото профиля</h2>
@@ -84,33 +87,6 @@ export const Profile = () => {
             Сохранить
           </button>
         </form>
-        <h3 className="profile-title">Изменение пароля</h3>
-        <p className="profile-title">Текущий пароль</p>
-        <input
-          className="profile-input"
-          placeholder="Текущий пароль"
-          type="password"
-        />
-        <p className="profile-title">Новый пароль</p>
-        <input
-          className="profile-input"
-          placeholder="Новый пароль"
-          type="password"
-        />
-        <p className="profile-title">Подтвердите пароль</p>
-        <input
-          className="profile-input"
-          placeholder="Подтвердите пароль"
-          type="password"
-        />
-        <button className="profile-btn2">Сохранить</button>
-        <h3 className="profile-title">Удаление профиля</h3>
-        <p className="profile-remove">
-          <span className="profile-remove-item">
-            <IoTrashOutline />
-          </span>
-          Удалить профиль
-        </p>
       </div>
     </ContainerLayout>
   );

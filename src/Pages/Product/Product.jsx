@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 
-import axios from "../../axios";
-import { CustomContext } from "../../Context";
+import axios from "../../api/axios";
+import { CustomContext } from "../../context/context";
 
 import { ContainerLayout } from "../../components/Layout/ContainerLayout/ContainerLayout";
 import { EditCard } from "../../components/EditCard/EditCard";
@@ -11,7 +11,6 @@ import { Navigation } from "../../components/Navigation/Navigation";
 
 import { FaEye } from "react-icons/fa";
 import { AiTwotoneLike } from "react-icons/ai";
-// import { FaUserAlt } from "react-icons/fa";
 
 import "./product.scss";
 
@@ -38,11 +37,11 @@ export const Product = () => {
     <ContainerLayout>
       <Navigation />
       <div className="product">
-        <div className="product-crumbs">
-          <NavLink className="product-crumbs-link" to="/advertisements">
-            Advertisements
+        <div className="crumbs">
+          <NavLink className="crumbs-link" to="/advertisements">
+            Мои объявления
           </NavLink>
-          - <p className="product-crumbs-noLink">Product</p>
+          - <p className="crumbs-noLink">Продукт</p>
         </div>
         <div className="product-content">
           <div className="product-content-left">
@@ -63,19 +62,9 @@ export const Product = () => {
             </div>
           </div>
           <div className="product-content-right">
-            <h2 className="product-content-title">{advertisement.name}</h2>
+            <h2 className="content-title">{advertisement.name}</h2>
             <p className="product-content-descr">{advertisement.description}</p>
-            <p className="product-content-price">{advertisement.price} RUB</p>
-            {/* <div className="product-content-user">
-              <FaUserAlt />
-              {advertisement.creator ? (
-                <p className="product-content-userName">
-                  {advertisement.creator.name}
-                </p>
-              ) : (
-                "No name"
-              )}
-            </div> */}
+            <p className="content-price">{advertisement.price} RUB</p>
             <button
               className="product-content-change-btn"
               type="button"

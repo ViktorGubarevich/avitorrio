@@ -2,8 +2,8 @@ import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 
-import axios from "../../axios";
-import { CustomContext } from "../../Context";
+import axios from "../../api/axios";
+import { CustomContext } from "../../context/context";
 
 import "./edit-card.scss";
 
@@ -12,12 +12,6 @@ export const EditCard = ({ onClose }) => {
 
   const params = useParams();
   const { register, handleSubmit } = useForm();
-
-  useEffect(() => {
-    axios.get(`/advertisements/${params.id}`).then((res) => {
-      setAdvertisement(res.data);
-    });
-  }, [advertisement]);
 
   const changePostHandler = (data) => {
     axios
@@ -36,6 +30,12 @@ export const EditCard = ({ onClose }) => {
       })
       .catch((err) => alert(err));
   };
+
+  useEffect(() => {
+    axios.get(`/advertisements/${params.id}`).then((res) => {
+      setAdvertisement(res.data);
+    });
+  }, []);
 
   return (
     <div className="overlay overlay-active">
@@ -85,7 +85,7 @@ export const EditCard = ({ onClose }) => {
             <button type="submit" className="edit-btn">
               Сохранить
             </button>
-            <button onClick={onClose} className="edit-btn" value="Сохранить">
+            <button onClick={onClose} className="edit-btn">
               Отмена
             </button>
           </div>

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 import { ContainerLayout } from "../../components/Layout/ContainerLayout/ContainerLayout";
-import { CustomContext } from "../../Context";
+import { CustomContext } from "../../context/context";
 
 import "./home.scss";
 

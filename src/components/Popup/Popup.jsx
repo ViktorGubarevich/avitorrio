@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "../../axios";
-import { CustomContext } from "../../Context";
+
+import axios from "../../api/axios";
+import { CustomContext } from "../../context/context";
 
 import "./popup.scss";
 
-export const Popup = ({ popup, setPopup, popupAdd, setPopupAdd }) => {
+export const Popup = ({ popup, setPopup, popupAdd, setPopupAdd, onClose }) => {
   const { user, setUser } = useContext(CustomContext);
   const [status, setStatus] = useState("signIn");
 
@@ -70,7 +71,9 @@ export const Popup = ({ popup, setPopup, popupAdd, setPopupAdd }) => {
   return (
     <div
       onClick={(e) => popUpCloseFunc(e)}
-      className={`overlay ${popup && "overlay-active"} ${popupAdd && "overlay-active"}`}
+      className={`overlay ${popup && "overlay-active"} ${
+        popupAdd && "overlay-active"
+      }`}
     >
       <div className="popup">
         {popup && (
@@ -85,13 +88,17 @@ export const Popup = ({ popup, setPopup, popupAdd, setPopupAdd }) => {
             <div className="popup-form-top">
               <h2
                 onClick={() => setStatus("signIn")}
-                className={`popup-title ${status === "signIn" && "popup-title-active"}`}
+                className={`popup-title ${
+                  status === "signIn" && "popup-title-active"
+                }`}
               >
                 Войти
               </h2>
               <h2
                 onClick={() => setStatus("signUp")}
-                className={`popup-title ${status === "signUp" && "popup-title-active"}`}
+                className={`popup-title ${
+                  status === "signUp" && "popup-title-active"
+                }`}
               >
                 Регистрация
               </h2>
@@ -113,8 +120,7 @@ export const Popup = ({ popup, setPopup, popupAdd, setPopupAdd }) => {
             <input
               {...register("password", {
                 pattern: {
-                  value:
-                    /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g,
+                  value: /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g,
                   message:
                     "Пароль должен содержать в себе минимум 8 символов, заглавную букву, число!",
                 },
@@ -155,9 +161,14 @@ export const Popup = ({ popup, setPopup, popupAdd, setPopupAdd }) => {
               type="number"
               placeholder="Введите цену"
             />
-            <button className="popup-btn" type="submit">
-              Добавить объявление
-            </button>
+            <div className="popup-btns">
+              <button className="popup-btn" type="submit">
+                Добавить объявление
+              </button>
+              <button onClick={onClose} className="popup-btn">
+                Отмена
+              </button>
+            </div>
           </form>
         )}
       </div>

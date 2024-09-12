@@ -46,53 +46,15 @@
   border: 2px solid black;
 }
 
-.category-content {
-  margin: 40px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.advertisements {
+  padding: 50px 0;
 }
 
-.category-price {
-  width: 40%;
+.advertisements-content {
+  flex-direction: column;
 }
 
-.category-inputs {
-  display: flex;
-  gap: 40px;
-}
-
-.category-second-input {
-  width: 50%;
-  height: 50px;
-  padding-left: 20px;
-  border: 2px solid black;
-}
-
-.category-sort {
-  width: 40%;
-}
-
-.category-select.sort {
-  width: 100%;
-}
-
-.btn {
-  display: flex;
-  justify-content: end;
-}
-
-.category-btn {
-  padding: 15px 20px;
-  width: 20%;
-  background-color: orange;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  color: black;
-}
-
-.advertisement-size {
+.advertisements-size {
   cursor: pointer;
 
   option {
@@ -100,22 +62,18 @@
   }
 }
 
-.home {
-  padding: 50px 0;
+.advertisements-sort {
+  margin-bottom: 40px;
 }
 
-.home-content {
-  flex-direction: column;
-}
-
-.home-cards {
+.advertisements-cards {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
   margin-top: 30px;
 }
 
-.home-card {
+.advertisement-card {
   width: calc(25% - (60px / 4));
   border: 2px solid orange;
   padding: 10px;
@@ -130,24 +88,28 @@
   }
 }
 
-.home-card-link {
+.advertisement-cards .advertisement-card .advertisement-card-link {
   color: black;
 }
 
-.home-card-img {
+.advertisement-card-img {
   width: 100%;
   height: 300px;
   margin-bottom: 20px;
 }
 
-.home-card-title,
-.home-card-price {
+.advertisement-card-title,
+.advertisement-card-price {
   margin-bottom: 10px;
 }
 
-.home-card-descr {
+.advertisement-card-descr {
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.product-content-uses.advertisement {
+  margin-top: 20px;
 }

@@ -7,6 +7,11 @@
   background-color: #fff;
   border: 1px solid #ccc;
   box-shadow: 0 0 10px #000;
+  width: 40%;
+
+  &:hover {
+    cursor: default;
+  }
 }
 
 .preview-btn {
@@ -16,9 +21,25 @@
   border: none;
   cursor: pointer;
   color: black;
+}
 
-  &:hover {
-    transform: translateY(-10px);
-    transition: 0.3s;
-  }
+.items-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.item-content {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.item-content-left,
+.item-content-right {
+  width: 50%;
+}
+
+.item-content-img {
+  width: 40%;
 }

@@ -21,8 +21,8 @@
   "advertisements": [
     {
       "id": "1",
-      "name": "Элитнейший стул",
-      "description": "Красивая мебель, подойдет в каждый интерьер дома",
+      "name": "Элитный",
+      "description": "Прекраснейшая мебель, подойдет в каждый интерьер дома",
       "price": "2550",
       "createdAt": "2022-08-12T20:16:55.351Z",
       "views": 20,
@@ -163,7 +163,7 @@
   "orders": [
     {
       "id": "1",
-      "status": "Ожидают оплаты",
+      "status": "Отменен",
       "createdAt": "2024-08-12T20:20:55.351Z",
       "finishedAt": "",
       "total": 314000,
@@ -176,7 +176,7 @@
           "createdAt": "2024-08-12T12:16:55.351Z",
           "views": 200000,
           "likes": 302,
-          "imageUrl": "",
+          "imageUrl": "https://resizer.mail.ru/p/d4e63a7e-ad1b-54c0-abe5-7eae7b28d152/AQAKoZ_1xZ98iiuCaFZ1lSAAkLQ1NOf-s2mt6RD9Hyv7GJdGiyIwW0fpO09Sh3VZXPj4Ot0MwvdU1wrQVXZl4aShHTE.jpg",
           "count": 3
         },
         {
@@ -187,14 +187,14 @@
           "createdAt": "2024-04-12T20:16:55.351Z",
           "views": 1,
           "likes": 0,
-          "imageUrl": "",
+          "imageUrl": "https://fabrikaupakovki.ru/upload/iblock/d12/d12de844896373903752c22331d9afa1.jpg",
           "count": 2
         }
       ]
     },
     {
       "id": "2",
-      "status": "Получен",
+      "status": "Ожидают оплаты",
       "createdAt": "2024-08-12T20:20:55.351Z",
       "finishedAt": "2024-08-12T20:25:55.351Z",
       "total": 33000,
@@ -208,7 +208,7 @@
           "createdAt": "2023-08-12T20:16:55.351Z",
           "views": 77832,
           "likes": 45666,
-          "imageUrl": "",
+          "imageUrl": "https://masterpiecer-images.s3.yandex.net/5f8a5fd38484e3a:upscaled",
           "count": 10
         },
         {
@@ -218,7 +218,7 @@
           "createdAt": "2024-06-12T20:16:55.351Z",
           "views": 0,
           "likes": 0,
-          "imageUrl": "",
+          "imageUrl": "https://britishroom.ru/upload/iblock/216/j5gyr4z5667k5dfrw80n06yrk5frgdgk/3-prichiny-pokupat-kachestvennye-dorogie-noski.jpg",
           "count": 5
         }
       ]
