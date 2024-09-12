@@ -1,6 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from 'react';
 
-import axios from "../api/axios";
+import axios from '../api/axios';
 
 export const CustomContext = createContext();
 
@@ -11,8 +11,8 @@ export const Context = ({ children }) => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState({
-    likes: "",
-    name: "",
+    likes: '',
+    name: '',
     price: {
       from: 0,
     },
@@ -22,8 +22,8 @@ export const Context = ({ children }) => {
   const signal = controller.signal;
 
   const restoreUserFromLocalStorage = () => {
-    if (JSON.parse(localStorage.getItem("user")) !== null) {
-      setUser(JSON.parse(localStorage.getItem("user")));
+    if (JSON.parse(localStorage.getItem('user')) !== null) {
+      setUser(JSON.parse(localStorage.getItem('user')));
     }
   };
 
@@ -32,20 +32,20 @@ export const Context = ({ children }) => {
 
     axios
       .get(
-        `/advertisements?${
-          filter?.likes?.length ? `likes=${filter.likes}` : ""
-        }${filter?.name?.length ? `&name=${filter.name}` : ""}`,
-        { signal }
+        `/advertisements?${filter?.likes?.length ? `likes=${filter.likes}` : ''}${
+          filter?.name?.length ? `&name=${filter.name}` : ''
+        }`,
+        { signal },
       )
       .then((res) => {
         setAdvertisements(res.data);
         setLoading(false);
       })
       .catch((error) => {
-        if (error.name === "AbortError") {
-          console.log("Запрос был отменен");
+        if (error.name === 'AbortError') {
+          console.log('Запрос был отменен');
         } else {
-          console.error("Ошибка:", error);
+          console.error('Ошибка:', error);
         }
       });
   };
@@ -54,19 +54,16 @@ export const Context = ({ children }) => {
     setLoading(true);
 
     axios
-      .get(
-        `/orders?${filter?.status?.length ? `status=${filter.status}` : ""}`,
-        { signal }
-      )
+      .get(`/orders?${filter?.status?.length ? `status=${filter.status}` : ''}`, { signal })
       .then((res) => {
         setOrders(res.data);
         setLoading(false);
       })
       .catch((error) => {
-        if (error.name === "AbortError") {
-          console.log("Запрос был отменен");
+        if (error.name === 'AbortError') {
+          console.log('Запрос был отменен');
         } else {
-          console.error("Ошибка:", error);
+          console.error('Ошибка:', error);
         }
       });
   };
@@ -94,7 +91,5 @@ export const Context = ({ children }) => {
     signal,
   };
 
-  return (
-    <CustomContext.Provider value={value}>{children}</CustomContext.Provider>
-  );
+  return <CustomContext.Provider value={value}>{children}</CustomContext.Provider>;
 };
